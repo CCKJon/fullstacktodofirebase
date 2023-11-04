@@ -4,7 +4,6 @@
   import { auth, db } from "../lib/firebase/firebase";
   import { getDoc, doc, setDoc } from "firebase/firestore";
   import { authStore } from "../store/store";
-  import DOIT from "../lib/images/DOIT.gif";
 
   const nonAuthRoutes = ["/", "product"];
 
@@ -59,11 +58,6 @@
 
 <div class="mainContainer">
   <slot />
-  <div
-    class="mx-auto w-80 border-4 border-indigo-800 rounded-xl overflow-hidden"
-  >
-    <img src={DOIT} alt="" />
-  </div>
 </div>
 
 <style>
