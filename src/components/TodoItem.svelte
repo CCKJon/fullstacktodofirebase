@@ -6,10 +6,11 @@
 </script>
 
 <div
-  class="todo border rounded-xl bg-indigo-800 w-80 mb-2 py-3 px-3 border-indigo-800 shadow-inner"
+  class="todo border rounded-xl bg-indigo-800 w-full mb-2 py-3 px-3 border-indigo-800 shadow-inner"
 >
   <p>
-    {index + 1}. {todo}
+    {index + 1}. {todo.title} - {todo.category} -
+    {todo.description}
   </p>
   <div class="actions">
     <i

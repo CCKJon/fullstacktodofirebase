@@ -5,8 +5,19 @@
   import TodoItem from "../../components/TodoItem.svelte";
   import DOIT from "$lib/images/DOIT.gif";
 
+  let category;
+  let title;
+  let description;
+  let due_date;
+  let create_date;
   let todoList = [];
-  let currTodo = "";
+  let currTodo = {
+    category,
+    title,
+    description,
+    create_date: new Date(),
+    due_date,
+  };
   let error = false;
 
   authStore.subscribe((curr) => {
@@ -14,12 +25,13 @@
   });
 
   function addTodo() {
+    console.log("this is todo", currTodo);
     error = false;
     if (!currTodo) {
       error = true;
     }
     todoList = [...todoList, currTodo];
-    currTodo = "";
+    currTodo = {};
   }
 
   function editTodo(index) {
@@ -57,13 +69,17 @@
 
 {#if !$authStore.loading}
   <div class="mainContainer">
+    <div class="text-3xl flex flex-row justify-center">
+      Welcome to your Todo List!
+    </div>
+    <div
+      class="mx-auto w-80 border-4 border-indigo-800 rounded-xl overflow-hidden"
+    >
+      <img src={DOIT} alt="" />
+    </div>
     <div class="headerContainer">
       <h1>Todo List</h1>
-      <div
-        class="mx-auto w-80 border-4 border-indigo-800 rounded-xl overflow-hidden"
-      >
-        <img src={DOIT} alt="" />
-      </div>
+
       <div class="headerBtns">
         <button on:click={saveTodos}>
           <i class="fa-regular fa-floppy-disk" />
@@ -81,11 +97,31 @@
       {/if}
 
       {#each todoList as todo, index}
-        <TodoItem {todo} {index} {removeTodo} {editTodo} />
+        <TodoItem {index} {todo} {removeTodo} {editTodo} />
       {/each}
     </main>
     <div class={"enterTodo " + (error ? "errorBorder" : "")}>
-      <input bind:value={currTodo} type="text" placeholder="Enter todo" />
+      <input
+        bind:value={currTodo.title}
+        type="text"
+        placeholder="Enter title"
+      />
+      <input
+        bind:value={currTodo.category}
+        type="text"
+        placeholder="Category"
+      />
+      <input
+        bind:value={currTodo.description}
+        type="text"
+        placeholder="Enter description"
+      />
+
+      <input
+        bind:value={currTodo.due_date}
+        type="date"
+        placeholder="Enter due date"
+      />
       <button on:click={addTodo}>ADD</button>
     </div>
   </div>
