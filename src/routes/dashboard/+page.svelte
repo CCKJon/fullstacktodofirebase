@@ -72,11 +72,11 @@
     <div class="text-3xl flex flex-row justify-center">
       Welcome to your Todo List!
     </div>
-    <div
+    <!-- <div
       class="mx-auto w-80 border-4 border-indigo-800 rounded-xl overflow-hidden"
     >
       <img src={DOIT} alt="" />
-    </div>
+    </div> -->
     <div class="headerContainer">
       <h1>Todo List</h1>
 
